@@ -1,5 +1,4 @@
-﻿using LeapDayTinkering.RaspberryPi.Http;
-using System;
+﻿using System;
 
 namespace LeapDayTinkering.RaspberryPi.ViewModels
 {
@@ -10,7 +9,9 @@ namespace LeapDayTinkering.RaspberryPi.ViewModels
         
         internal void SendSensorValue(string sensorName, double sensorValue)
         {
-            LeapDayTinkeringAppService appServiceClient = new LeapDayTinkeringAppService();
+            // change this URL to match your own App Service's root URL
+            Uri baseUri = new Uri("https://leapdaytinkeringappservice.azurewebsites.net");
+            LeapDayTinkeringAppService appServiceClient = new LeapDayTinkeringAppService(baseUri);
 
             appServiceClient.Sensor.Post(new Models.SensorReading
             {
@@ -21,3 +22,6 @@ namespace LeapDayTinkering.RaspberryPi.ViewModels
         }
     }
 }
+
+
+
