@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace LeapDayTinkering.RaspberryPi.Http
 {
+    /// <summary>
+    /// Eventually this class will be used in a later update to the sample which 
+    /// will include functionality for hosting the API behind API Management.
+    /// </summary>
     internal class ApimRequestHandler : DelegatingHandler
     {
         private string SubscriberId;

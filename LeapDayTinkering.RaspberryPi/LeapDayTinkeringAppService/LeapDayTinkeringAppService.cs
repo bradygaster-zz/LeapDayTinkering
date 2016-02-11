@@ -33,6 +33,13 @@ namespace LeapDayTinkering.RaspberryPi
             set { this._credentials = value; }
         }
         
+        private IDevice _device;
+        
+        public virtual IDevice Device
+        {
+            get { return this._device; }
+        }
+        
         private ISensor _sensor;
         
         public virtual ISensor Sensor
@@ -46,6 +53,7 @@ namespace LeapDayTinkering.RaspberryPi
         public LeapDayTinkeringAppService()
             : base()
         {
+            this._device = new Device(this);
             this._sensor = new Sensor(this);
             this._baseUri = new Uri("https://leapdaytinkeringappservice.azurewebsites.net");
         }
@@ -60,6 +68,7 @@ namespace LeapDayTinkering.RaspberryPi
         public LeapDayTinkeringAppService(params DelegatingHandler[] handlers)
             : base(handlers)
         {
+            this._device = new Device(this);
             this._sensor = new Sensor(this);
             this._baseUri = new Uri("https://leapdaytinkeringappservice.azurewebsites.net");
         }
@@ -77,6 +86,7 @@ namespace LeapDayTinkering.RaspberryPi
         public LeapDayTinkeringAppService(HttpClientHandler rootHandler, params DelegatingHandler[] handlers)
             : base(rootHandler, handlers)
         {
+            this._device = new Device(this);
             this._sensor = new Sensor(this);
             this._baseUri = new Uri("https://leapdaytinkeringappservice.azurewebsites.net");
         }

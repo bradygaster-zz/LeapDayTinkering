@@ -96,6 +96,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Http\ApimRequestHandler.cs" />
+    <Compile Include="LeapDayTinkeringAppService\Device.cs" />
+    <Compile Include="LeapDayTinkeringAppService\DeviceExtensions.cs" />
+    <Compile Include="LeapDayTinkeringAppService\IDevice.cs" />
     <Compile Include="LeapDayTinkeringAppService\ILeapDayTinkeringAppService.cs" />
     <Compile Include="LeapDayTinkeringAppService\ISensor.cs" />
     <Compile Include="LeapDayTinkeringAppService\LeapDayTinkeringAppService.cs" />

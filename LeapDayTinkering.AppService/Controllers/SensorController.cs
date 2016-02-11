@@ -1,8 +1,5 @@
 ﻿using LeapDayTinkering.AppService.Models;
 using Swashbuckle.Swagger.Annotations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -13,33 +10,24 @@ namespace LeapDayTinkering.AppService.Controllers
     public class SensorController : ApiController
     {
         [ResponseType(typeof(SensorReading))]
-        [SwaggerResponse(HttpStatusCode.BadRequest, "New registrations should pass Guid.Empty.", typeof(SensorReading))]
-        [SwaggerResponse(HttpStatusCode.Conflict, "The sensor ID has already been recorded.", typeof(SensorReading))]
-        [SwaggerResponse(HttpStatusCode.OK, "Sensor and/or Device recorded.", typeof(SensorReading))]
+        [SwaggerResponse(HttpStatusCode.NotFound, "Unknown device.", typeof(SensorReading))]
+        [SwaggerResponse(HttpStatusCode.OK, "Sensor value recorded.", typeof(SensorReading))]
         public HttpResponseMessage Post(SensorReading sensorReading)
         {
-            HttpResponseMessage ret = null;
-
-            // has this device already been registered with this sensor name?
-            if (DoesSensorAlreadyExist(sensorReading))
+            if (!DoesDeviceAlreadyExist(sensorReading.DeviceId))
             {
-                // return http conflict
-                ret = Request.CreateResponse<SensorReading>(HttpStatusCode.Conflict, sensorReading);
-            }
-            else
-            {
-                // save the sensor reading
-                SaveReading(sensorReading);
-                ret = Request.CreateResponse<SensorReading>(HttpStatusCode.OK, sensorReading);
+                return Request.CreateResponse<SensorReading>(HttpStatusCode.NotFound, sensorReading);
             }
 
-            return ret;
+            SaveReading(sensorReading);
+
+            return Request.CreateResponse<SensorReading>(HttpStatusCode.OK, sensorReading);
         }
 
-        private bool DoesSensorAlreadyExist(SensorReading sensorReading)
+        private bool DoesDeviceAlreadyExist(string deviceId)
         {
             // todo: implement
-            return false;
+            return true;
         }
 
         private bool SaveReading(SensorReading sensorReading)
@@ -49,3 +37,7 @@ namespace LeapDayTinkering.AppService.Controllers
         }
     }
 }
+
+
+
+

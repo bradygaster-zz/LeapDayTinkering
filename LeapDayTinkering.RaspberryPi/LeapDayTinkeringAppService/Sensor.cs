@@ -117,7 +117,7 @@ namespace LeapDayTinkering.RaspberryPi
             HttpStatusCode statusCode = httpResponse.StatusCode;
             cancellationToken.ThrowIfCancellationRequested();
             string responseContent = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-            if (statusCode != HttpStatusCode.OK && statusCode != HttpStatusCode.BadRequest && statusCode != HttpStatusCode.Conflict)
+            if (statusCode != HttpStatusCode.OK && statusCode != HttpStatusCode.NotFound)
             {
                 HttpOperationException<object> ex = new HttpOperationException<object>();
                 ex.Request = httpRequest;
@@ -136,7 +136,7 @@ namespace LeapDayTinkering.RaspberryPi
             result.Response = httpResponse;
             
             // Deserialize Response
-            if (statusCode == HttpStatusCode.OK || statusCode == HttpStatusCode.BadRequest || statusCode == HttpStatusCode.Conflict)
+            if (statusCode == HttpStatusCode.OK || statusCode == HttpStatusCode.NotFound)
             {
                 SensorReading resultModel = new SensorReading();
                 JToken responseDoc = null;

@@ -16,8 +16,6 @@
             <ColumnDefinition Width="140"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Your Subscriber ID:" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"/>
-        <TextBox Text="{Binding SubscriberId, Mode=TwoWay}" Grid.Column="1" Grid.Row="0" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
-        <ToggleButton IsChecked="{Binding IsSending, Mode=TwoWay}" Content="Start Sending" Grid.Row="1" Grid.Column="1"/>
+        <ToggleButton IsChecked="{Binding IsSending, Mode=TwoWay}" Content="Start Sending" Grid.Row="0" Grid.Column="0"/>
     </Grid>
 </Page>

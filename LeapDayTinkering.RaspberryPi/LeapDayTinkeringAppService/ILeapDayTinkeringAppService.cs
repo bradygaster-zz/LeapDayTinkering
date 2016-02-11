@@ -26,6 +26,11 @@ namespace LeapDayTinkering.RaspberryPi
             get; set; 
         }
         
+        IDevice Device
+        {
+            get; 
+        }
+        
         ISensor Sensor
         {
             get; 
