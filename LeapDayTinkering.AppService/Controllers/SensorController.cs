@@ -43,7 +43,15 @@ namespace LeapDayTinkering.AppService.Controllers
 
             CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
             CloudQueue queue = queueClient.GetQueueReference("incoming");
-            queue.CreateIfNotExists();
+
+            try
+            {
+                queue.CreateIfNotExists();
+            }
+            catch
+            {
+                // not much to do
+            }
 
             string json = JsonConvert.SerializeObject(sensorReading);
             CloudQueueMessage message = new CloudQueueMessage(json);
