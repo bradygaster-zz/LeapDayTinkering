@@ -131,7 +131,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\PublishProfiles\AppServiceAsIOTBackEnd - Web Deploy.pubxml" />
     <Content Include="Service References\appserviceiotdataAzureStorage\ConnectedService.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
