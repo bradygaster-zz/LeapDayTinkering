@@ -1,4 +1,5 @@
 ﻿using LeapDayTinkering.RaspberryPi.ViewModels;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
@@ -29,7 +30,7 @@ namespace LeapDayTinkering.RaspberryPi
                 MainPageViewModel viewModel = ((MainPageViewModel)x);
 
                 if (viewModel.IsSending)
-                    viewModel.SendSensorValue("MockSensor", 3.14);
+                    viewModel.SendSensorValue("MockSensor", new Random().Next(65, 72));
 
             }), this.ViewModel, 1000, 30000);
         }

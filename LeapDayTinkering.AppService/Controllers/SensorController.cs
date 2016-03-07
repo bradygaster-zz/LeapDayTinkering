@@ -1,5 +1,9 @@
 ﻿using LeapDayTinkering.AppService.Models;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Queue;
+using Newtonsoft.Json;
 using Swashbuckle.Swagger.Annotations;
+using System.Configuration;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -32,7 +36,19 @@ namespace LeapDayTinkering.AppService.Controllers
 
         private bool SaveReading(SensorReading sensorReading)
         {
-            // todo: implement
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+                ConfigurationManager
+                    .AppSettings["appserviceiotdata_AzureStorageConnectionString"]
+                );
+
+            CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
+            CloudQueue queue = queueClient.GetQueueReference("incoming");
+            queue.CreateIfNotExists();
+
+            string json = JsonConvert.SerializeObject(sensorReading);
+            CloudQueueMessage message = new CloudQueueMessage(json);
+            queue.AddMessage(message);
+
             return true;
         }
     }
