@@ -29,10 +29,9 @@ namespace LeapDayTinkering.RaspberryPi
                 MainPageViewModel viewModel = ((MainPageViewModel)x);
 
                 if (viewModel.IsSending)
-                {
                     viewModel.SendSensorValue("MockSensor", 3.14);
-                }
-            }), this.ViewModel, 1000, 20000);
+
+            }), this.ViewModel, 1000, 30000);
         }
     }
 }
