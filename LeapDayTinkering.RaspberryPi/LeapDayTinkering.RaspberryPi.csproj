@@ -95,7 +95,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Http\ApimRequestHandler.cs" />
     <Compile Include="LeapDayTinkeringAppService\Device.cs" />
     <Compile Include="LeapDayTinkeringAppService\DeviceExtensions.cs" />
     <Compile Include="LeapDayTinkeringAppService\IDevice.cs" />
@@ -116,7 +115,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="LeapDayTinkering.RaspberryPi_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />
